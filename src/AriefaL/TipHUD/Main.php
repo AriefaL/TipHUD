@@ -7,6 +7,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\command\CommandSender;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\player\PlayerQuitEvent;
+use AriefaL\TipHUD\Tasks\TipHudTask;
 
 class Main extends PluginBase implements Listener {
 
@@ -22,7 +23,7 @@ class Main extends PluginBase implements Listener {
         }
 
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $this->getScheduler()->scheduleRepeatingTask(new Task($this, $this->getConfig()->getAll()), 20);
+        $this->getScheduler()->scheduleRepeatingTask(new TipHudTask($this, $this->getConfig()->getAll()), 20);
     }
     
     /**
