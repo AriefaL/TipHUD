@@ -5,8 +5,6 @@ use pocketmine\scheduler\Task;
 use pocketmine\utils\TextFormat as TE;
 use pocketmine\utils\Config;
 use AriefaL\TipHUD\Main;
-use _64FF00\PurePerms\PurePerms;
-use onebone\economyapi\EconomyAPI;
 
 class TipHudTask extends Task {
 
@@ -39,9 +37,8 @@ class TipHudTask extends Task {
      * @return void
      */
     public function getPlayerMoney(Player $player) {
-        /** @var EconomyAPI $economyAPI */
         $economyAPI = $this->main->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-        if ($economyAPI instanceof EconomyAPI) {
+        if ($economyAPI !== null) {
             return $economyAPI->myMoney($player);
         } else {
             return "Plugin not found";
@@ -53,9 +50,8 @@ class TipHudTask extends Task {
      * @return string
      */
     public function getPlayerRank(Player $player): string {
-        /** @var PurePerms $purePerms */
         $purePerms = $this->main->getServer()->getPluginManager()->getPlugin("PurePerms");
-        if ($purePerms instanceof PurePerms) {
+        if ($purePerms !== null) {
             $group = $purePerms->getUserDataMgr()->getData($player)['group'];
             if ($group !== null) {
                 return $group;
